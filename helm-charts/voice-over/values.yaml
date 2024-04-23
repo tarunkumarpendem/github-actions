@@ -1,0 +1,48 @@
+# Default values for voice-over.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: gol-voice-over-poc
+
+deployment:
+  name: gol-voice-over
+  replicaCount: 1
+  image:
+
+
+service:
+  name: gol-voice-over
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  name: gol-voice-over-ingress
+  className: nginx
+  hosts:
+    host: gol.com
+    paths:
+      - path: /
+        pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 100Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+
+autoscaling:
+  name: gol-voice-over
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 1
+  # targetMemoryUtilizationPercentage: 80
+
+
+affinity: {}
