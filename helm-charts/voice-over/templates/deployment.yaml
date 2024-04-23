@@ -4,18 +4,18 @@ kind: Deployment
 metadata:
   name: {{ .Values.deployment.name }}-deployment
   labels:
-    {{ .Values.deployment.name }}
+    name: {{ .Values.deployment.name }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.deployment.replicaCount }}
   selector:
     matchLabels:
-      {{ .Values.deployment.name }}
+      name: {{ .Values.deployment.name }}
   template:
     metadata:
-      {{ .Values.deployment.name }}
+      name: {{ .Values.deployment.name }}
       labels:
-        {{ .Values.deployment.name }}
+        name: {{ .Values.deployment.name }}
     spec:
       containers:
         - name: {{ .Values.deployment.name }}

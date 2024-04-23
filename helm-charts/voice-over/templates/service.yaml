@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{ .Values.service.name }}
+    name: {{ .Values.deployment.name }}
